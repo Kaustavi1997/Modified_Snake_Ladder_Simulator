@@ -47,8 +47,10 @@ playGame(){
 	while [ $current -ne 100 ]
 	do  
 		current=$(movePlayer $current)
+		echo $current
+		countTurns=$(($countTurns+1))
 	done
-	echo $current
 	echo "Player wins!"
+	echo $countTurns
 }
 playGame $playerOnePosition
