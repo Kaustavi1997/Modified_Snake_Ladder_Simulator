@@ -1,6 +1,7 @@
 #! /bin/bash -x
 
 playerOnePosition=0
+playerTwoPosition=0
 NO_PLAY=0
 LADDER=1
 SNAKE=2
@@ -53,4 +54,25 @@ playGame(){
 	echo "Player wins!"
 	echo $countTurns
 }
-playGame $playerOnePosition
+playGameForTwoPlayers(){
+	local currentP1=$1
+	local currentP2=$2
+	while [ $currentP1 -ne 100 -a $currentP2 -ne 100 ]
+	do  
+		currentP1=$(movePlayer $currentP1)
+		echo "Player1 pos = $currentP1"
+		if [ $currentP1 -eq 100 ]
+		then
+			break
+		fi
+		currentP2=$(movePlayer $currentP2)
+		echo "Player2 pos = $currentP2"
+	done
+	if [ $currentP1 -eq 100 ]
+	then
+		echo "Player1 wins"
+	else
+		echo "Player2 wins"
+	fi
+}
+playGameForTwoPlayers $playerOnePosition $playerTwoPosition
