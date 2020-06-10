@@ -35,6 +35,9 @@ movePlayer(){
 	if [ $current -lt 0 ]
 	then
 		current=0
+	elif [ $current -gt 100 ]
+	then
+		current=$currentInit
 	fi	
 	echo $current
 }
