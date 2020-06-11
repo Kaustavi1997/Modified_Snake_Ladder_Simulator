@@ -2,14 +2,15 @@
 
 playerOnePosition=0
 playerTwoPosition=0
-NO_PLAY=0
-LADDER=1
-SNAKE=2
+
 rollDice(){
 	local roll=$((RANDOM%6+1))
 	echo $roll
 }
-genPlayOptions(){
+generatePlayOptions(){
+	local NO_PLAY=0
+	local LADDER=1
+	local SNAKE=2
 	local roll=$(rollDice)
 	local option=$((RANDOM%3))
 	local move=-1
@@ -31,7 +32,7 @@ genPlayOptions(){
 movePlayer(){
 	local current=$1
 	local currentInit=$current
-	local move=$(genPlayOptions)
+	local move=$(generatePlayOptions)
 	current=$(($current+$move))
 	if [ $current -lt 0 ]
 	then
@@ -55,20 +56,20 @@ playGame(){
 	echo $countTurns
 }
 playGameForTwoPlayers(){
-	local currentP1=$1
-	local currentP2=$2
-	while [ $currentP2 -ne 100 ]
+	local currentPlayer1=$1 
+	local currentPlayer2=$2
+	while [ $currentPlayer2 -ne 100 ]
 	do  
-		currentP1=$(movePlayer $currentP1)
-		echo "Player1 pos = $currentP1"
-		if [ $currentP1 -eq 100 ]
+		currentPlayer1=$(movePlayer $currentPlayer1)
+		echo "Player1 pos = $currentPlayer1"
+		if [ $currentPlayer1 -eq 100 ]
 		then
 			break
 		fi
-		currentP2=$(movePlayer $currentP2)
-		echo "Player2 pos = $currentP2"
+		currentPlayer2=$(movePlayer $currentPlayer2)
+		echo "Player2 pos = $currentPlayer2"
 	done
-	if [ $currentP1 -eq 100 ]
+	if [ $currentPlayer1 -eq 100 ]
 	then
 		echo "Player1 wins"
 	else
