@@ -57,7 +57,7 @@ playGame(){
 playGameForTwoPlayers(){
 	local currentP1=$1
 	local currentP2=$2
-	while [ $currentP1 -ne 100 -a $currentP2 -ne 100 ]
+	while [ $currentP2 -ne 100 ]
 	do  
 		currentP1=$(movePlayer $currentP1)
 		echo "Player1 pos = $currentP1"
