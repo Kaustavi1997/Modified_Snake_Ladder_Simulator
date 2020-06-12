@@ -1,4 +1,4 @@
-#! /bin/bash -x
+#! /bin/bash 
 
 playerOnePosition=0
 playerTwoPosition=0
@@ -43,7 +43,7 @@ movePlayer(){
 	fi	
 	echo $current
 }
-playGame(){
+onePlayerGame(){
 	local countTurns=0
 	local current=$1
 	while [ $current -ne 100 ]
@@ -55,25 +55,25 @@ playGame(){
 	echo "Player wins!"
 	echo $countTurns
 }
-playGameForTwoPlayers(){
-	local currentPlayer1=$1 
-	local currentPlayer2=$2
-	while [ $currentPlayer2 -ne 100 ]
+twoPlayerGame(){
+	local player1=$1 
+	local player2=$2
+	while [ $player2 -ne 100 ]
 	do  
-		currentPlayer1=$(movePlayer $currentPlayer1)
-		echo "Player1 pos = $currentPlayer1"
-		if [ $currentPlayer1 -eq 100 ]
+		player1=$(movePlayer $player1)
+		echo "Player1 position = $player1"
+		if [ $player1 -eq 100 ]
 		then
 			break
 		fi
-		currentPlayer2=$(movePlayer $currentPlayer2)
-		echo "Player2 pos = $currentPlayer2"
+		player2=$(movePlayer $player2)
+		echo "Player2 position = $player2"
 	done
-	if [ $currentPlayer1 -eq 100 ]
+	if [ $player1 -eq 100 ]
 	then
 		echo "Player1 wins"
 	else
 		echo "Player2 wins"
 	fi
 }
-playGameForTwoPlayers $playerOnePosition $playerTwoPosition
+twoPlayerGame $playerOnePosition $playerTwoPosition
